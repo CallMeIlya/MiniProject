@@ -6,8 +6,7 @@ class main {
 	
 	static Scanner input = new Scanner(System.in);
 
-
-
+    public static int[] map;
 
 	//waits until user presses a key
 	public static void waitUntil() {
@@ -46,21 +45,28 @@ class main {
 			return getDialogue(input.nextLine(), options);
 		}
 	}
+
     public static int getInstruction(String num) {
         int options = 8;
-        System.out.println("(1) Open the door (2) Go north (3) Go south (4) Go east (5) Go west (6) Take Item (7) Drop Item (8) Use Item");
         try {
             int option = Integer.parseInt(num);
             if(option > options) {
                 System.out.println("Please enter a valid option");
+                System.out.println("(1) Open the door (2) Go north (3) Go south (4) Go east (5) Go west (6) Take Item (7) Drop Item (8) Use Item");
                 return getDialogue(input.nextLine(), options);
             } else {
                 return option;
             }
         } catch(NumberFormatException BadNumber) {
             System.out.println("Please enter a valid option");
+            System.out.println("(1) Open the door (2) Go north (3) Go south (4) Go east (5) Go west (6) Take Item (7) Drop Item (8) Use Item");
             return getDialogue(input.nextLine(), options);
         }
+    }
+
+    public static int presentOptions(String num) {
+        System.out.println("(1) Open the door (2) Go north (3) Go south (4) Go east (5) Go west (6) Take Item (7) Drop Item (8) Use Item");
+        return getInstruction(num);
     }
 
 	public static void main(String args[]) {
@@ -111,9 +117,11 @@ class main {
         System.out.println("With nowhere left to go you decide to open the door.");
         System.out.println("To your surprise the door opens just fine. and in front of you are two more doors. One to the west, one to the east. The eastern door has a label with a skull with bones on it. The western door seems to have no labels but is colored red");
         waitUntil();
-        System.out.println("You look at the compass and notice that it is pointing to the east for some reason. Towards the door with skulls");
-        waitUntil();
-        System.out.println("(1) Open the eastern door with the skull (2) open the western door (3) take item");
+
+        while(true) {
+            int option = presentOptions(input.nextLine());
+
+        }
 
     }
 }
